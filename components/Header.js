@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { Link, useNavigation } from "expo-router";
 import { Themes } from "../assets/Themes";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Header({ title }) {
   let headerTitle = title;
@@ -52,7 +52,7 @@ export default function Header({ title }) {
       <Text style={styles.title}>{headerTitle}</Text>
       {(title === "Profile" || title === "Feed") && (
         <Link 
-          href={ title === "Profile" ? {pathname: "/profile/settings"} : {pathname: "friendsPage", previousPage: "Feed"}} 
+          href={title === "Profile" ? {pathname: "/profile/settings"} : {pathname: "friendsPage", previousPage: "Feed"}} 
           style={styles.rightIcon}
         >
           <FontAwesome5
@@ -62,6 +62,18 @@ export default function Header({ title }) {
           />
         </Link>
       )}
+      {/* {(title === "Roll") && (
+        <Link 
+          href={{pathname: "friendsPage", previousPage: "Feed"}}
+          style={styles.rightIcon}
+        >
+          <MaterialCommunityIcons
+            name="pencil"
+            size={25}
+            color="white"
+          />
+        </Link>
+      )} */}
     </View>
   );
 }
