@@ -17,7 +17,7 @@ import Header from "../Header";
 import { ActivitiesContext } from "../../contexts/ActivitiesContext";
 import { Link } from "expo-router";
 
-export default function RollDice({ onData, canRoll }) {
+export default function RollDice({ onData, canRoll, diceRolled }) {
   const [appearHeader, setAppearHeader] = useState(false);
   const handleData = (data) => {
     // Process the data
@@ -52,7 +52,7 @@ export default function RollDice({ onData, canRoll }) {
               Roll the dice for an Activity!{" "}
             </Text>
           </View>
-          <DiceComponent style={styles.Dice} onData={handleData} />
+          <DiceComponent style={styles.Dice} onData={handleData} isRollable={!diceRolled} />
         </View>
       ) : (
         <View style={styles.msg}>

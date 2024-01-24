@@ -5,7 +5,7 @@ import { Stack } from "expo-router";
 import { ActivitiesContext } from "../contexts/ActivitiesContext";
 import RollDice from "../components/ProgressScreens/RollDice";
 import CompleteDice from "../components/ProgressScreens/CompleteDice";
-import ActvityRollled from "../components/ActivityRolled";
+import ActivityRolled from "../components/ActivityRolled";
 import { InProgressContext } from "../contexts/InProgressContext";
 import Animated, {
   useSharedValue,
@@ -16,6 +16,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { CommentsProvider } from "../contexts/CommentsContext";
 import { InProgressProvider } from "../contexts/InProgressContext";
+import SwipeButton from "../components/SwipeButton";
+
 
 export default function Page() {
   const { activities, canRoll } = useContext(ActivitiesContext);
@@ -24,7 +26,7 @@ export default function Page() {
   const progress1 = useSharedValue(1);
   const rStyle = useAnimatedStyle(() => {
     return {
-      opacity: progress1.value,
+      // opacity: progress1.value,
     };
   }, []);
 
@@ -79,22 +81,19 @@ export default function Page() {
     <InProgressProvider>
       {appearHeader && (
         <Animated.View style={[styles.square, rStyle2]}>
-          <ActvityRollled diceNum={diceNum} activityName={activityName} />
+          <ActivityRolled diceNum={diceNum} activityName={activityName} />
         </Animated.View>
       )}
       <Animated.View style={[styles.container, rStyle]}>
-        {activeScreen === "RollDice" && (
-          <RollDice onData={handleData} canRoll={canRoll} />
-        )}
-        {activeScreen === "CompleteDice" && (
-          <CompleteDice
-            setActiveScreen={setActiveScreen}
-            setAppearHeader={setAppearHeader}
-            activityName={activityName}
-            activityIndex={diceNum}
-          />
-        )}
+        <RollDice onData={handleData} canRoll={canRoll} diceRolled={appearHeader} />
       </Animated.View>
+
+
+      {appearHeader && (
+        <Animated.View style={styles.buttonContainer}>
+          <SwipeButton style={styles.swipeButton} />
+        </Animated.View>
+      )}
     </InProgressProvider>
   );
 }

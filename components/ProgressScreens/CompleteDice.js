@@ -14,8 +14,9 @@ import DiceComponent from "../DiceComponent";
 import { useState } from "react";
 import ActivityCircle from "../ActivityCircle";
 import CongratsModal from "../CongratsModal";
-import ActvityRolled from "../ActivityRolled";
+import ActivityRolled from "../ActivityRolled";
 import Fire from "../Icons/Fire";
+import Header from "../Header"
 
 export default function CompleteDice({
   setActiveScreen,
@@ -34,8 +35,8 @@ export default function CompleteDice({
   };
 
   return (
-    <View>
-      <View style={styles.header}>
+    <View style={styles.container}>
+      {/* <View style={styles.header}>
         <View style={styles.banner}>
           <View style={styles.iconsContainer}>
             <FontAwesome5
@@ -51,14 +52,19 @@ export default function CompleteDice({
             <Text style={styles.iconText}>x10</Text>
           </View>
         </View>
-      </View>
-      <View style={[styles.square]}>
-        <ActvityRolled />
-      </View>
-      <Journey flipping={true} />
+      </View> */}
+      <Header title="Roll" />
+
+      {/* <View style={[styles.square]}>
+        <ActivityRolled />
+      </View> */}
+
+      {/* <Journey flipping={true} /> */}
+
       <View style={styles.buttonContainer}>
         <SwipeButton onToggle={onToggle} style={styles.swipeButton} />
       </View>
+
       <CongratsModal
         activityName={activityName}
         activityIndex={activityIndex}
@@ -74,6 +80,12 @@ export default function CompleteDice({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   button: {
     backgroundColor: Themes.colors.blue,
     borderRadius: 20,
@@ -92,7 +104,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     position: "absolute",
-    bottom: 40,
+    top: 630,
   },
   buttonText: {
     fontFamily: "Poppins-Bold",

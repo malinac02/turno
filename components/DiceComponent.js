@@ -24,7 +24,7 @@ const imageSources = [
   Images.diceFaces.six,
 ];
 
-const DiceComponent = ({ onData }) => {
+const DiceComponent = ({ onData, isRollable }) => {
   const progress = useSharedValue(1);
   const scale = useSharedValue(1);
   const diceTransform = useSharedValue(0);
@@ -155,20 +155,25 @@ const DiceComponent = ({ onData }) => {
   //TODO: REMEMBER rStyle vs reanimatedStyle
   return (
     <View style={styles.container}>
-      <PanGestureHandler onGestureEvent={panGestureEvent}>
-        <Animated.View style={[styles.square, rStyle]}>
-          {/* <Pressable
-            style={styles.imageContainer}
-            onPress={startCycling}
-            disabled={isCycling}
-          > */}
-          <Image
-            source={imageSources[currentImageIndex]}
-            style={styles.image}
-          />
-          {/* </Pressable> */}
-        </Animated.View>
-      </PanGestureHandler>
+      {isRollable ? (
+        <PanGestureHandler onGestureEvent={panGestureEvent}>
+          <Animated.View style={[styles.square, rStyle]}>
+            <Image
+              source={imageSources[currentImageIndex]}
+              style={styles.image}
+            />
+          </Animated.View>
+        </PanGestureHandler>
+      ) : (
+        // <PanGestureHandler onGestureEvent={panGestureEvent}>
+          <Animated.View style={[styles.square, rStyle]}>
+            <Image
+              source={imageSources[currentImageIndex]}
+              style={styles.image}
+            />
+          </Animated.View>
+        // </PanGestureHandler>
+      )}
     </View>
   );
 };

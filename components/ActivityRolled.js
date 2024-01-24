@@ -18,8 +18,7 @@ export default function ActvityRollled({ diceNum, activityName }) {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text} numberOfLines={3} ellipsizeMode="tail">
-          {" "}
-          {activityName}{" "}
+          {" "}{activityName}{" "}
         </Text>
       </View>
     </View>
