@@ -24,13 +24,18 @@ export default function RollDice({ onData, canRoll, diceRolled }) {
     onData(data);
     setAppearHeader(true);
     headerBounce();
+    swipeBounce();
     //setActiveScreen("CompleteDice"); TODO IMPORTANT
   };
   const headerBounce = () => {
     progress.value = withSpring(130);
   };
+  const swipeBounce = () => {
+    progress2.value = withSpring(130);
+  };
 
   const progress = useSharedValue(0);
+  const progress2 = useSharedValue(0);
 
   const rStyle = useAnimatedStyle(() => {
     return {
@@ -39,7 +44,6 @@ export default function RollDice({ onData, canRoll, diceRolled }) {
   }, []);
 
   const { activities } = useContext(ActivitiesContext);
-  console.log("length " + activities.length);
 
   return (
     <View style={styles.screenContainer}>

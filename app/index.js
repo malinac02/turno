@@ -17,6 +17,7 @@ import Animated, {
 import { CommentsProvider } from "../contexts/CommentsContext";
 import { InProgressProvider } from "../contexts/InProgressContext";
 import SwipeButton from "../components/SwipeButton";
+import CongratsModal from "../components/CongratsModal";
 
 
 export default function Page() {
@@ -59,7 +60,12 @@ export default function Page() {
     progress.value = withSpring(130);
   };
 
+  const swipeBounce = () => {
+    progress2.value = withSpring(130);
+  };
+
   const progress = useSharedValue(0);
+  const progress2 = useSharedValue(0);
 
   const rStyle2 = useAnimatedStyle(() => {
     return {
@@ -74,7 +80,19 @@ export default function Page() {
     setAppearHeader(true);
     startAnimation();
     headerBounce();
+    swipeBounce();
   };
+
+  const [swipeComplete, setSwipeComplete] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [switchEnabled, setSwitchEnabled] = useState(false);
+
+  const onSwipe = () => {
+    setSwipeComplete(!swipeComplete);
+    setModalVisible(!swipeComplete);
+  };
+
+  
 
   //TODO: Dice shouldn't be clickable after rolling
   return (
@@ -91,9 +109,20 @@ export default function Page() {
 
       {appearHeader && (
         <Animated.View style={styles.buttonContainer}>
-          <SwipeButton style={styles.swipeButton} />
+          <SwipeButton onToggle={onSwipe} style={styles.swipeButton} />
+          <CongratsModal
+            activityName={activityName}
+            activityIndex={diceNum}
+            isModalVisible={isModalVisible}
+            setModalVisible={setModalVisible}
+            switchEnabled={switchEnabled}
+            setSwitchEnabled={setSwitchEnabled}
+            setActiveScreen={setActiveScreen}
+            setAppearHeader={setAppearHeader}
+          />
         </Animated.View>
       )}
+
     </InProgressProvider>
   );
 }
