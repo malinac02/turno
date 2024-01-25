@@ -68,9 +68,10 @@ export default function AppLayout() {
                 tabBarLabel: "Roll",
                 tabBarLabelStyle: styles.iconAndText,
                 tabBarIcon: ({ size, color }) => (
-                  <View style={{transform: [{ rotate: "45deg" }]}}>
-                   <FontAwesome5 name="dice-five" size={size} color={color} />
-                  </View>
+                  // <View style={{transform: [{ rotate: "45deg" }]}}>
+                  //  <FontAwesome5 name="dice-five" size={size} color={color} />
+                  // </View>
+                  <DiceSVG width={32} color={color} />
                 ),
               }}
             />
