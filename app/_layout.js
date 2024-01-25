@@ -43,7 +43,6 @@ export default function AppLayout() {
               },
             }}
           >
-           
             <Tabs.Screen
               name="activities"
               options={{
@@ -89,7 +88,6 @@ export default function AppLayout() {
               options={{
                 tabBarLabelStyle: styles.iconAndText,
                 tabBarLabel: "Browse",
-                
                 tabBarIcon: ({ size, color }) => (
                   <FontAwesome5 name="search" size={size} color={color} />
                 ),
