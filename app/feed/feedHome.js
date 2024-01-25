@@ -6,67 +6,11 @@ import { useFonts } from "expo-font";
 import Post from "../../components/Post";
 import Header from "../../components/Header";
 import { PostsContext } from "../../contexts/PostsContext";
-import Supabase from "../../Supabase";
+
 
 export default function Page() {
   const [data, setData] = useState();
 
-  // Handling Supabase logic taken from supabase website and CS147L Lecture 13
-  const handleRecordUpdated = (payload) => {
-    console.log("UPDATE", payload);
-    setData((oldData) =>
-      oldData.map((item) => (item.id === payload.old.id ? payload.new : item))
-    );
-  };
-
-  const handleRecordInserted = (payload) => {
-    console.log("INSERT", payload);
-    setData((oldData) => [...oldData, payload.new]);
-  };
-
-  const handleRecordDeleted = (payload) => {
-    console.log("DELETE", payload);
-    setData((oldData) => oldData.filter((item) => item.id !== payload.old.id));
-  };
-
-  useEffect(() => {
-    const subscription = Supabase.channel("feed-schema")
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "posts_feed" },
-        handleRecordUpdated
-      )
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "posts_feed" },
-        handleRecordInserted
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "posts_feed" },
-        handleRecordDeleted
-      )
-      .subscribe();
-
-    // Unsubscribe on cleanup
-    return () => subscription.unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await Supabase.from("posts_feed").select("*");
-        if (response.error) {
-          throw response.error;
-        }
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-    fetchData();
-  }, []);
-  //End of Supabase Logic
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../../assets/Poppins/Poppins-Regular.ttf"),

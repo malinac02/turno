@@ -26,6 +26,7 @@ export default function ProfileCard({
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../assets/Poppins/Poppins-Regular.ttf"),
+    "Poppins-SemiBold": require("../assets/Poppins/Poppins-SemiBold.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -64,17 +65,19 @@ export default function ProfileCard({
 
 const styles = StyleSheet.create({
   container: {
-    height: 300, // Keep this Standard
-    gap: 4,
+    // height: 220,
+    gap: 1,
     width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    // backgroundColor: "green"
   },
   imageContainer: {
-    width: "30%",
+    width: "25%",
     height: undefined,
     aspectRatio: 1,
     borderRadius: 100,
@@ -91,19 +94,19 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Regular",
   },
   profileName: {
-    fontSize: 24,
-    fontFamily: "Poppins-Bold",
+    fontSize: 20,
+    // fontFamily: "Poppins-SemiBold",
   },
   handle: {
     fontFamily: "Poppins-Regular",
-    fontSize: 17,
+    fontSize: 14,
     textAlign: "center",
   },
   friendsBox: {
     marginTop: 8,
     borderRadius: 10,
     borderWidth: 0.5,
-    padding: 10,
+    padding: 5,
   },
   addFriendBox: {
     borderRadius: 10,

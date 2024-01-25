@@ -29,6 +29,7 @@ export default function AppLayout() {
       <ActivitiesProvider>
         <PostsProvider>
           <Tabs
+            initialRouteName="feed"
             screenOptions={{
               headerShown: false,
               tabBarActiveTintColor: Themes.colors.salmon,
@@ -43,9 +44,52 @@ export default function AppLayout() {
               },
             }}
           >
+            <Tabs.Screen 
+              name="progress/index"
+              options={{
+                href: null,
+              }}
+            />
             <Tabs.Screen
+              name="index"
+              options={{
+                // no tab bar visible
+                href: null,
+                tabBarStyle: {
+                  display: "none",
+                }
+              }}
+            />
+          
+            <Tabs.Screen
+              name="roll/index"
+              options={{
+                
+                tabBarLabel: "Roll",
+                tabBarLabelStyle: styles.iconAndText,
+                tabBarIcon: ({ size, color }) => (
+                  <View style={{transform: [{ rotate: "45deg" }]}}>
+                   <FontAwesome5 name="dice-five" size={size} color={color} />
+                  </View>
+                ),
+              }}
+            />
+              <Tabs.Screen
+                name="activities"
+                options={{
+                  
+                  tabBarLabelStyle: styles.iconAndText,
+                  tabBarLabel: "Activities",
+                  tabBarIcon: ({ size, color }) => (
+                    <FontAwesome5 name="clipboard" size={size} color={color} />
+                  ),
+                  href: null,
+                }}
+              />
+             <Tabs.Screen
               name="feed"
               options={{
+                
                 tabBarLabelStyle: styles.iconAndText,
                 tabBarLabel: "Feed",
                 tabBarIcon: ({ color }) => (
@@ -54,43 +98,19 @@ export default function AppLayout() {
               }}
             />
             <Tabs.Screen
-              name="activities"
+              name="browse/DicePage"
               options={{
-                tabBarLabelStyle: styles.iconAndText,
-                tabBarLabel: "Activities",
-                tabBarIcon: ({ size, color }) => (
-                  <FontAwesome5 name="clipboard" size={size} color={color} />
-                ),
+                href: null,
               }}
             />
             <Tabs.Screen
-              name="index"
-              options={{
-                tabBarIcon: ({ size, color }) => (
-                  <View
-                    style={{
-                      top: -4,
-                      height: 80,
-                      width: 80,
-                      borderRadius: 50,
-                      backgroundColor: Themes.colors.lightGray,
-                      justifyContent: "flex-start",
-                      paddingTop: 2,
-                      alignItems: "center",
-                    }}
-                  >
-                    <DiceSVG width={70} color={color} rectSize={10} />
-                  </View>
-                ),
-              }}
-            />
-            <Tabs.Screen
-              name="progress/index"
+              name="browse/index"
               options={{
                 tabBarLabelStyle: styles.iconAndText,
-                tabBarLabel: "Progress",
+                tabBarLabel: "Browse",
+                
                 tabBarIcon: ({ size, color }) => (
-                  <FontAwesome5 name="check-circle" size={size} color={color} />
+                  <FontAwesome5 name="search" size={size} color={color} />
                 ),
               }}
             />

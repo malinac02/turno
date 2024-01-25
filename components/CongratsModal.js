@@ -8,7 +8,6 @@ import Themes from "../assets/Themes/themes.js";
 import Fire from "./Icons/Fire";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Supabase from "../Supabase.js";
 import { PostsContext } from "../contexts/PostsContext.js";
 import { ActivitiesContext } from "../contexts/ActivitiesContext.js";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -40,29 +39,7 @@ export default function CongratsModal({
   const { posts } = useContext(PostsContext);
 
   const postActivity = async () => {
-    const { data, error } = await Supabase.from("posts")
-      .insert([
-        {
-          is_profile_post: true,
-          user_handle: "@pcivita",
-          user_name: "Pedro Civita",
-          user_profile_pic: "Pedro",
-          post_text: activityName,
-          comments: [],
-        },
-      ])
-      .select();
-
-    addPost(
-      "@pcivita",
-      "Pedro Civita",
-      Images.profileImages.pedro,
-      "New Post",
-      true
-    );
-
-    onExitModal();
-    router.replace("/profile");
+    console.log(activityName)
   };
 
   return (

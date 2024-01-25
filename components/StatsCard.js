@@ -52,33 +52,29 @@ export default function Stats({ index, statContent }) {
         />
         <View style={styles.circle}>
           {iconComponent}
-          {/* <FontAwesome5 name="dice-five" size={50} color={Themes.colors.salmon} /> */}
           <Text style={styles.circleText}>x{stat}</Text>
         </View>
         <Text style={styles.description1}>{description1}</Text>
         <Text style={styles.description2}>{description2}</Text>
       </View>
-    </View>
+    </View> 
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // width: 310,
-    height: 420,
+    height: 325,
     alignItems: "center"
   },
   statCard: {
     width: 310,
     flex: 1,
-    // height: 450,
-    // backgroundColor: Themes.colors.salmon,
     borderRadius: 30,
     borderWidth: 3,
     borderColor: "black",
     padding: 8,
     alignItems: "center",
-    gap: 20,
+    gap: 10,
     backgroundColor: "white"
   },
   firstStatsCard: {
@@ -88,37 +84,38 @@ const styles = StyleSheet.create({
     marginRight: 41,
   },
   diceNumberIcon: {
-    // flex: 1,
-    width: 70,
+    width: 50,
     height: undefined,
     aspectRatio: 1,
   },
   circle: {
-    width: 180,
+    width: 150,
     height: undefined,
     aspectRatio: 1,
-    borderRadius: 30,
-    borderWidth: 6,
-    borderColor: Themes.colors.salmon,
+    borderRadius: 75,
+    borderWidth: 5,
+    borderColor: Themes.colors.salmonLight,
     justifyContent: "center",
     alignItems: "center"
   },
   circleText: {
-    fontSize: 40,
-    fontFamily: "Poppins-Bold"
+    fontSize: 30,
+    fontFamily: "Poppins-SemiBold"
   },
   description1: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 30,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 10,
+    // marginTop: 10,
+    fontFamily: "Poppins-SemiBold"
   },
   description2: {
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 25,
     textAlign: "center",
-    marginTop: -10
+    marginTop: -10,
+    fontFamily: "Poppins-Regular"
   }
 });
 
