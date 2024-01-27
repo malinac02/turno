@@ -36,6 +36,8 @@ export default function Activity({ activityObject, index, section }) {
 
   let activityName = activityObject ? activityObject[0] : null;
 
+  // activityObject = ["Green Library", "Quiet and beautiful spot to study", "Exercise"] [name, description, category]
+
   return (
     <View>
       {activityObject ? (

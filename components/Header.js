@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function Header({ title, dice }) {
+export default function Header({ title, dice, onPress=null }) {
   let headerTitle = title;
   if (title === "Friends from Feed" || title === "Friends from Profile") {
     headerTitle="Friends";
@@ -30,7 +30,7 @@ const titleToPath = {
     <View style={styles.container}>
       {(titleToPath[title]) ?
         <View style={styles.leftIcon}>
-          <Link href={backPath}>
+          <Link href={backPath} onPress={onPress}>
             <FontAwesome5
               name="arrow-left"
               size={25}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     top: 65,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     color: "white",
     fontFamily: "Poppins-Bold",
   },

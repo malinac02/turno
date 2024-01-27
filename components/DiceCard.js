@@ -8,11 +8,11 @@ export default function DiceCard({ img, title, user, numSaved, numRolled}) {
     <View style={styles.container}>
       <Image source={img} style={styles.image}/>
         <Text style={styles.titleText}>{title}</Text>    
-        <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 2, marginLeft: 10}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 2, marginLeft: 6}}>
             <Image source={user.profilePic} style={styles.profilePic}/>
             <Text style={{fontSize: 12}}>By @{user.username}</Text>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10, marginTop: 8}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 6, marginTop: 6}}>
             <Image style={styles.bookmarkIcon} source={require('../assets/Themes/Images/other/bookmarkGrey.png')}/>
             <Text style={styles.statsText}>{numSaved}</Text>
             <Image style={styles.bookmarkIcon} source={require('../assets/Themes/Images/other/diceRoll.png')}/>
@@ -24,9 +24,9 @@ export default function DiceCard({ img, title, user, numSaved, numRolled}) {
 
 const styles = StyleSheet.create({
     container: {
-        width: (windowWidth / 2) - (windowWidth * 0.05),
+        width: (windowWidth / 2) - (windowWidth * 0.03),
         borderRadius: 20,
-        height: 250,
+        height: 230,
         borderWidth: 1,
         borderColor: '#E2E2E2',
     },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Regular',
         fontSize: 14,
         marginTop: 10,
-        marginLeft: 10,
+        marginLeft: 6,
     },
     profilePic: {
         width: 30,

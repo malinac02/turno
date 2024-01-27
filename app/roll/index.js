@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   createDiceContainer: {
     width: (windowWidth / 2) - (windowWidth * 0.05),
     borderRadius: 20,
-    height: 250,
+    height: 230,
     borderWidth: 1,
     borderColor: Themes.colors.mediumGray,
     display: "flex",

@@ -6,6 +6,9 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
 } from "react-native";
 import { Link, Stack } from "expo-router";
 import { ActivitiesContext } from "../../contexts/ActivitiesContext";
@@ -13,24 +16,52 @@ import { Themes } from "../../assets/Themes";
 import Category from "../../components/Category";
 import Header from "../../components/Header";
 import Activity from "../../components/Activity";
+import { FontAwesome5 } from "@expo/vector-icons";
+import CreateActivityModal from "../../components/CreateActivityModal";
 
 export default function Page() {
   const [activityName, setActivityName] = useState("");
   const [description, setDescription] = useState("");
   const { addActivity } = useContext(ActivitiesContext);
+  const [currDice, setCurrDice] = useState({})
+  const [activities, setActivities] = useState([[]])
+
+  //modal variables
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
 
   const handleAddActivity = () => {
     if (isFormFilled) {
-      addActivity(activityName, description);
+      // addActivity(activityName, description);
+      
+
     }
   };
 
+  const clearFields = () => {
+    console.log("go back")
+    setActivityName("");
+    setDescription("");
+    setActivities([[]])
+  }
+
   const [isFormFilled, setIsFormFilled] = useState(false);
+
+  // useEffect(() => {
+  //   setCurrDice({activityName: activityName, description: description, activities: activities})
+  // },[activityName, description, activities])
 
   useEffect(() => {
     setIsFormFilled(activityName.trim().length > 0);
   }, [activityName]);
+
+  useEffect(() => {
+    console.log("currDice", currDice)
+    console.log("activities", activities)
+  }, [currDice, activities])
 
   const categories = [
     ["Exercise", "running"],
@@ -43,9 +74,11 @@ export default function Page() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      
       <View style={styles.container}>
         <Stack.Screen options={{ headerShown: false }} />
-        <Header title="Create New Dice" />
+        <Header title="Create New Dice" onPress={clearFields}/>
+        <ScrollView>
         <View style={styles.activityNameContainer}>
           <Text style={styles.title}>
             Dice Name <Text style={styles.asterick}>*</Text>
@@ -58,7 +91,7 @@ export default function Page() {
           />
         </View>
         <View style={styles.descriptionContainer}>
-          <Text style={styles.title}> Activities (0/6)</Text>
+          <Text style={styles.title}>Description</Text>
           <TextInput
             editable
             multiline
@@ -73,14 +106,70 @@ export default function Page() {
             onChangeText={setDescription}
           />
         </View>
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.title}> Description</Text>
-          <View style={styles.addActivityContainer}>
-            <Activity style={styles.addActivity}/>
-          </View>
-        </View>
         
-        <View>
+        <View style={styles.activityCardContainer}>
+          <Text style={[styles.title, {marginBottom: 10}]}>
+            Activities (0/6)<Text style={styles.asterick}>*</Text>
+          </Text>
+          {activities.length > 0 && (
+            <>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginLeft: 6 }}>
+              {activities.map((item, index) => {
+                if (item.length === 0) {
+                  return (
+                    <TouchableOpacity
+                      key={`activity-${index}`}
+                      onPress={toggleModal}
+                      style={{ margin: 5 }}
+                    >
+                      <View style={styles.addActivityContainer}>
+                        <View style={[styles.activityContainer, styles.gray]}>
+                          <View style={styles.createActivityContainer}>
+                            <FontAwesome5
+                              name="plus"
+                              size={45}
+                              color={Themes.colors.salmon}
+                              style={styles.createActivity}
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      key={`activity-${index}`}
+                      style={{ margin: 5 }}
+                      onPress={() => {
+                        console.log("pressed activity", index + 1);
+                      }}
+                    >
+                      <Activity
+                        activityObject={item}
+                        index={index + 1}
+                        isEditable={true}
+                      />
+                    </TouchableOpacity>
+                  );
+                }
+              })}
+            </View>
+            </>
+          ) }
+        </View>
+        <View style={{height: 90}} />
+        </ScrollView>
+
+        <CreateActivityModal
+          activities={activities}
+          setActivities={setActivities}
+          isModalVisible={isModalVisible}
+          toggleModal={toggleModal}
+          setModalVisible={setModalVisible}
+        />
+        
+        <View style={{position: 'absolute', bottom: 30}}>
           <Link
             disabled={!isFormFilled}
             href={{
@@ -91,7 +180,7 @@ export default function Page() {
             }}
             onPress={handleAddActivity}
           >
-            <View style={[styles.button, isFormFilled ? styles.buttonEnabled : styles.buttonDisabled]}>
+            <View style={[styles.button, isFormFilled ? styles.buttonEnabled : styles.buttonDisabled,]}>
               <Text style={styles.buttonText}>Create Dice</Text>
             </View>
           </Link>
@@ -126,14 +215,16 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Regular",
   },
   activityNameContainer: {
-    height: "10%",
     width: "100%",
-    gap: 10,
+
   },
   descriptionContainer: {
-    height: "20%",
+    marginTop: 10,
     width: "100%",
-    gap: 10,
+  },
+  activityCardContainer: {
+    width: "100%",
+    marginTop: 10,
   },
   buttonContainer: {
     height: "10%",
@@ -165,8 +256,51 @@ const styles = StyleSheet.create({
     color: Themes.colors.salmon,
   },
   addActivityContainer: {
-    marginLeft: 15,
-    height: "100%",
     flex: 1,
-  }
+    height: 150,
+    width: 170,
+  },
+  activityContainer: {
+    backgroundColor: Themes.colors.salmonMedium,
+    height: 150,
+    width: 170,
+    borderRadius: 10,
+    justifyContent: "center",
+    // gap: 10,
+    alignItems: "center",
+    shadowColor: "rgba(0, 0, 0, 0.5)",
+    shadowOffset: { height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    // paddingTop: 30,
+  },
+  gray: {
+    borderWidth: 0.5,
+    borderColor: Themes.colors.darkGray,
+    backgroundColor: Themes.colors.background,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  createActivityContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  createActivity: {
+    alignSelf: "center",
+  },
+  activitiesContainer: {
+    width: "100%",
+    paddingHorizontal: 20,
+    paddingVertical: 4,
+    flexDirection: "space-between",
+  },
+  activitiesRow: {
+    width: "100%",
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 });
