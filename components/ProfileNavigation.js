@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Themes } from "../assets/Themes";
 import KudosIcon from "./Icons/Kudos";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const ProfileNavigation = ({ onData }) => {
   const [activeTab, setActiveTab] = useState("Stats"); 
@@ -31,7 +32,12 @@ const ProfileNavigation = ({ onData }) => {
           style={styles.tab}
           onPress={() => handleTabChange(tab)}
         >
-          <KudosIcon size={20} color={activeTab === tab ? "black" : "gray"} notFilled={true} />
+          {tab === "Stats" ? (
+            <FontAwesome5 size={20} name="signal" color={activeTab === tab ? "black":"gray"}/>
+          ) : (
+            <KudosIcon size={20} color={activeTab === tab ? "black" : "gray"} notFilled={true} />
+          )}
+          
           <Text style={[styles.tabText, activeTab === tab && styles.activeTabText]}>{tab}</Text>
         </TouchableOpacity>
       ))}
