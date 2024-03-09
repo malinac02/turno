@@ -4,6 +4,7 @@ export const colors = {
   salmon: "#FF7474",
   // salmon: '#4C5994',
   blue: "#4C5994",
+  blueLight: "rgba(76, 89, 148, 0.5)",
   salmonMedium: "#FF9292",
   salmonLight: "#FFB5B5",
   salmonVeryLight: "#FFF0F0",
