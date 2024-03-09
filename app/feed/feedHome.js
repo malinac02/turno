@@ -6,7 +6,7 @@ import { useFonts } from "expo-font";
 import Post from "../../components/Post";
 import Header from "../../components/Header";
 import { PostsContext } from "../../contexts/PostsContext";
-import Supabase from "../../Supabase";
+import FeedSupabase from "../../FeedSupabase";
 
 export default function Page() {
   const [data, setData] = useState();
@@ -27,7 +27,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    const subscription = Supabase.channel("feed-schema")
+    const subscription = FeedSupabase.channel("feed-schema")
       .on(
         "postgres_changes",
         { event: "UPDATE", schema: "public", table: "posts_feed" },
@@ -52,7 +52,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Supabase.from("posts_feed").select("*");
+        const response = await FeedSupabase.from("posts_feed").select("*");
         if (response.error) {
           throw response.error;
         }

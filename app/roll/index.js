@@ -20,6 +20,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import DeleteModal from "../../components/DeleteModal";
 
 const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 export default function Page() {
   const { user, fetchSavedDiceFromUid, fetchUserFromUid } = useContext(UserContext);
@@ -112,6 +113,7 @@ export default function Page() {
         )}
       /> 
       { isModalVisible &&
+      
         <DeleteModal 
           isModalVisible={isModalVisible} 
           setModalVisible={setModalVisible} 
