@@ -20,20 +20,6 @@ export default function PersonalDiceCard({
   toggleDeleteModal
 }) {
 
-  // const navigateToEdit = () => {
-  //   console.log("item: ", item);
-
-  //   router.setParams({
-  //     diceName: diceName,
-  //     description: description,
-  //     choices: JSON.stringify(item.choices),
-  //     categoryID: item.categoryID,
-  //     switchEnabled: community, 
-  //     imageUri: imageUri,
-  //   });
-  //   router.replace("/roll/editDice");
-  // };
-
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
@@ -55,7 +41,10 @@ export default function PersonalDiceCard({
           }}
         >
           <View style={styles.content}>
-            <Image source={{ uri: imageUri }} style={styles.image} />
+              <Image 
+                source={imageUri ? { uri: imageUri } : require("../assets/Themes/Images/onboarding/diceZigZag.png")} 
+                style={styles.image} 
+              />
             <View style={styles.textCol}>
               <View style={styles.titleAndSubtitle}>
                 <Text style={styles.titleText} numberOfLines={2}>
@@ -118,11 +107,7 @@ export default function PersonalDiceCard({
                 },
               }}
             >
-            
-            <TouchableOpacity
-              // onPress={navigateToEdit}
-              style={styles.popupMenuItem}
-            >
+            <TouchableOpacity style={styles.popupMenuItem}>
               <FontAwesome5 name="pencil-alt" size={16} color="black" />
               <Text style={styles.popupText}>Edit</Text>
             </TouchableOpacity>
@@ -151,7 +136,6 @@ const styles = StyleSheet.create({
   container: {
     width: windowWidth * 0.95,
     height: 140,
-
     borderWidth: 1,
     borderColor: Themes.colors.mediumGray,
     borderRadius: 20,
@@ -210,6 +194,9 @@ const styles = StyleSheet.create({
     width: 100,
     height: "90%",
     borderRadius: 10,
+    backgroundColor: Themes.colors.blue,
+    alignItems: "center",
+    justifyContent: "center",
   },
   titleAndSubtitle: {
     height: 50,
