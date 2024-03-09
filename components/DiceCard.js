@@ -3,6 +3,7 @@ import React from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Themes } from "../assets/Themes";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,7 +15,6 @@ export default function DiceCard({ img, title, creator, numSaved, numRolled }) {
 
   useEffect(() => {
     if (creator) {
-      // console.log("title: ", title, " creator: ", creator);
       const fetchUserData = async () => {
         try {
           let result = await fetchUserFromUid(creator);
@@ -34,22 +34,34 @@ export default function DiceCard({ img, title, creator, numSaved, numRolled }) {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: img }} style={styles.image} />
+      <View style={styles.imageContainer}>
+        {img !== "" ? (
+          <Image source={{ uri: img }} style={styles.image} />
+        ) : (
+          <Image
+            source={require("../assets/Themes/Images/onboarding/diceZigZag.png")}
+            style={styles.diceImage}
+          />
+        )}
+      </View>
       <Text style={styles.titleText}>{title}</Text>
       <View style={styles.row}>
-        {creatorProfilePic ?
-          <Image source={{ uri: creatorProfilePic }} style={styles.profilePic} />
-          :
+        {creatorProfilePic ? (
+          <Image
+            source={{ uri: creatorProfilePic }}
+            style={styles.profilePic}
+          />
+        ) : (
           <FontAwesome5
             name="user-circle"
             size={25}
             color="black"
             style={styles.profilePic}
           />
-          }
+        )}
         <Text style={{ fontSize: 12 }}>By @{creatorUsername}</Text>
       </View>
-      <View style={styles.row2} >
+      <View style={styles.row2}>
         <Image
           style={styles.bookmarkIcon}
           source={require("../assets/Themes/Images/other/bookmarkGrey.png")}
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 190,
     borderWidth: 1,
-    borderColor: "#E2E2E2",
+    borderColor: Themes.colors.mediumGray,
   },
   row: {
     flexDirection: "row",
@@ -86,11 +98,22 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 5,
   },
+  imageContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: Themes.colors.mediumGray,
+  },
   image: {
     width: "100%",
     height: 100,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+  },
+  diceImage: {
+    width: "100%",
+    height: 100,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: Themes.colors.blue,
   },
   titleText: {
     fontFamily: "Poppins-SemiBold",
