@@ -2,7 +2,7 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Themes } from "../assets/Themes";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import Images from "../assets/Themes/Images";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -11,18 +11,28 @@ const windowHeight = Dimensions.get("window").height;
 
 export default function PersonalDiceCard({
   item,
+  diceName,
+  description,
   imageUri,
-  title,
-  subText,
+  community,
   isPopupVisible,
-  onTogglePopup,
+  togglePopup,
+  toggleDeleteModal
 }) {
 
-  handleEllipsesPress = () => {
-    console.log("hi");
-    onTogglePopup()
-  };
+  // const navigateToEdit = () => {
+  //   console.log("item: ", item);
 
+  //   router.setParams({
+  //     diceName: diceName,
+  //     description: description,
+  //     choices: JSON.stringify(item.choices),
+  //     categoryID: item.categoryID,
+  //     switchEnabled: community, 
+  //     imageUri: imageUri,
+  //   });
+  //   router.replace("/roll/editDice");
+  // };
 
   return (
     <View style={styles.container}>
@@ -49,10 +59,10 @@ export default function PersonalDiceCard({
             <View style={styles.textCol}>
               <View style={styles.titleAndSubtitle}>
                 <Text style={styles.titleText} numberOfLines={2}>
-                  {title}
+                  {diceName}
                 </Text>
                 <Text style={styles.descText} numberOfLines={1}>
-                  {subText ? subText : " "}
+                  {description ? description : " "}
                 </Text>
               </View>
 
@@ -87,31 +97,46 @@ export default function PersonalDiceCard({
       <View style={styles.rightContainer}>
         <TouchableOpacity
           style={styles.menuDots}
-          onPress={handleEllipsesPress}
+          onPress={togglePopup}
         >
           <FontAwesome5 name="ellipsis-h" size={12} color="black" />
         </TouchableOpacity>
       </View>
       {isPopupVisible && (
         <View style={styles.popupMenu}>
-          <View style={styles.popupMenuRow1}>
+          <View style={styles.popupMenuRow}>
+            <Link
+              href={{
+                pathname: `/roll/editDice`,
+                params: {
+                  diceName: diceName,
+                  description: description,
+                  choices: JSON.stringify(item.choices),
+                  categoryID: item.categoryID,
+                  switchEnabled: community, 
+                  imageUri: imageUri,
+                },
+              }}
+            >
+            
             <TouchableOpacity
-              onPress={() => console.log("Edit")}
-              style={styles.popupMenuRow2}
+              // onPress={navigateToEdit}
+              style={styles.popupMenuItem}
             >
               <FontAwesome5 name="pencil-alt" size={16} color="black" />
               <Text style={styles.popupText}>Edit</Text>
             </TouchableOpacity>
+            </Link>
             <TouchableOpacity
-              onPress={onTogglePopup}
-              style={styles.popupMenuRow2}
+              onPress={togglePopup}
+              style={styles.popupExitButton}
             >
               <Text style={styles.popupText}>X</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
-            onPress={() => console.log("Delete")}
-            style={styles.popupMenuRow2}
+            onPress={toggleDeleteModal}
+            style={styles.popupMenuItem}
           >
             <FontAwesome5 name="trash-alt" size={16} color="black" />
             <Text style={styles.popupText}>Delete</Text>
@@ -217,15 +242,22 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  popupMenuRow1: {
+  popupMenuRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  popupMenuRow2: {
+  popupMenuItem: {
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
+    paddingRight: 15,
+  },
+  popupExitButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingLeft: 15,
   },
   popupText: {
     fontFamily: "Poppins-Regular",

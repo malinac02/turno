@@ -198,7 +198,7 @@ export default function Page() {
             </View>
           </View>
         )}
-        <View style={{ marginTop: 12 }} />
+        <View style={{ marginTop: 6 }} />
         <FlatList
           data={dataList}
           numColumns={2}
@@ -256,18 +256,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Themes.colors.background,
   },
-  headerText: {
-    fontFamily: "Poppins-Bold",
-    fontSize: 24,
-    marginTop: 30,
-    marginBottom: 24,
-  },
   searchBarContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     width: "90%",
-    marginTop: 16,
+    marginTop: 30,
   },
   searchBar: {
     width: "90%",
@@ -297,8 +291,9 @@ const styles = StyleSheet.create({
   },
   filterText: {
     textAlign: "center",
-    padding: 10,
+    padding: 8,
     color: Themes.colors.salmon,
+    fontFamily: "Poppins-Regular"
   },
   activeFilterButton: {
     borderRadius: 999,
@@ -309,12 +304,13 @@ const styles = StyleSheet.create({
   },
   activeFilterText: {
     textAlign: "center",
-    padding: 10,
+    padding: 8,
     color: "#fff",
+    fontFamily: "Poppins-Regular"
   },
   filtersMenuHeaderText: {
-    fontFamily: "Poppins-Regular",
-    fontSize: 24,
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 20,
     textAlign: "center",
   },
 });

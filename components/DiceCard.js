@@ -36,34 +36,20 @@ export default function DiceCard({ img, title, creator, numSaved, numRolled }) {
     <View style={styles.container}>
       <Image source={{ uri: img }} style={styles.image} />
       <Text style={styles.titleText}>{title}</Text>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginVertical: 2,
-          marginLeft: 10,
-        }}
-      >
+      <View style={styles.row}>
         {creatorProfilePic ?
           <Image source={{ uri: creatorProfilePic }} style={styles.profilePic} />
           :
           <FontAwesome5
             name="user-circle"
-            size={30}
+            size={25}
             color="black"
             style={styles.profilePic}
           />
           }
         <Text style={{ fontSize: 12 }}>By @{creatorUsername}</Text>
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: 10,
-          marginTop: 8,
-        }}
-      >
+      <View style={styles.row2} >
         <Image
           style={styles.bookmarkIcon}
           source={require("../assets/Themes/Images/other/bookmarkGrey.png")}
@@ -83,9 +69,22 @@ const styles = StyleSheet.create({
   container: {
     width: windowWidth / 2 - windowWidth * 0.05,
     borderRadius: 20,
-    height: 200,
+    height: 190,
     borderWidth: 1,
     borderColor: "#E2E2E2",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 2,
+    marginLeft: 10,
+    gap: 5,
+  },
+  row2: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 10,
+    marginTop: 5,
   },
   image: {
     width: "100%",
@@ -94,16 +93,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   titleText: {
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins-SemiBold",
     fontSize: 14,
     marginTop: 10,
     marginLeft: 10,
   },
   profilePic: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     borderRadius: 999,
-    marginRight: 10,
   },
   statsText: {
     fontFamily: "Poppins-Regular",

@@ -11,5 +11,6 @@ export const colors = {
   lightGray: "#e9e9e9",
   mediumGray: "#D7D7D7",
   darkGray: "#B2B2B2",
-  mango: "#FFCE51"
+  mango: "#FFCE51",
+  red: "#EF0F34"
 };

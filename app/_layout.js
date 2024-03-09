@@ -160,6 +160,12 @@ export default function AppLayout() {
                     href: null,
                   }}
                 />
+                 <Tabs.Screen
+                  name="roll/editDice"
+                  options={{
+                    href: null,
+                  }}
+                />
                 <Tabs.Screen
                   name="roll/MyDiceDetails"
                   options={{

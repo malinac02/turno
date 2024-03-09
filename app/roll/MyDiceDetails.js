@@ -13,6 +13,8 @@ import Header from "../../components/Header";
 import { Themes } from "../../assets/Themes";
 import Activity from "../../components/Activity";
 import { UserContext } from "../../contexts/UserContext";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 
 export default function MyDiceDetails() {
   const params = useLocalSearchParams();
@@ -74,6 +76,24 @@ export default function MyDiceDetails() {
 
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}>{params.diceName}</Text>
+        <Link
+          href={{
+            pathname: `/roll/editDice`,
+            params: {
+              diceName: params.diceName,
+              description: params.description,
+              choices: JSON.stringify(choices),
+              categoryID: 1, // TODO: change
+              switchEnabled: false, // TODO: change 
+              // imageUri: imageUri, // TODO
+            },
+          }}
+        >
+          <MaterialCommunityIcons name={"pencil"} size={25} color={"black"} style={styles.rightIcon}/>
+        </Link>
+      </View>
+
+      <View style={styles.descriptionContainer}>
         {params.description &&
           <Text style={styles.descriptionText}>{params.description}</Text>
         }
@@ -141,6 +161,12 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginTop: 20,
+    width: "90%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  descriptionContainer: {
     width: "90%",
     flexDirection: "column",
     alignItems: "left",
