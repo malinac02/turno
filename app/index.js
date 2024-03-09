@@ -38,20 +38,6 @@ export default function Onboarding() {
   const [onboardingScreenNumber, setOnboardingScreenNumber] = useState(0);
   const flatListRef = useRef(null);
 
-  const ONBOARDING_HEADERS = [
-    "Create your custom dice",
-    "Roll your dice to make decision-making fun",
-    "Explore community dice to find new things to do.",
-    "Celebrate all the choices being made",
-  ];
-
-  const ONBOARDING_DESCRIPTIONS = [
-    "Whether it’s deciding what to eat, which run to go on, or how to unwind, customize the dice with tailored choices to fit your life.",
-    "No more endless pondering or decision fatigue throughout the day.",
-    "Discover a wide range of activities in your area and see what’s popular around you.",
-    "Engage with your friends on Turno to learn about their lives.",
-  ];
-
   const ONBOARDING_SCREENS = [
     {
       title: "Create your custom dice",
@@ -64,7 +50,7 @@ export default function Onboarding() {
         "No more endless pondering or decision fatigue throughout the day.",
     },
     {
-      title: "Explore community dice to find new things to do.",
+      title: "Explore community dice to find new things to do",
       description:
         "Discover a wide range of activities in your area and see what’s popular around you.",
     },
@@ -237,7 +223,6 @@ export default function Onboarding() {
     return (
       <View style={styles.container}>
         <View style={styles.onboardingSpacing} />
-
         {onboardingScreenNumber !== 0 && (
           <Text
             style={{
@@ -252,7 +237,6 @@ export default function Onboarding() {
           </Text>
         )}
         {renderOnboardingImage()}
-
         <View
           style={{
             position: "absolute",
@@ -263,42 +247,35 @@ export default function Onboarding() {
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             height: windowHeight * 0.45,
+            paddingBottom: 10,
           }}
         >
           {onboardingScreenNumber === 0 ? (
-            <>
+            <View style={styles.firstScreenContainer}>
               <Text style={styles.title}>turno</Text>
               <Text style={styles.subtitle}>
                 Get rolling on making hard decisions
               </Text>
               <TouchableOpacity
-                style={{
-                  backgroundColor: Themes.colors.salmon,
-                  padding: 12,
-                  borderRadius: 999,
-                  width: windowWidth * 0.8,
-                  alignItems: "center",
-                  marginTop: 48,
-                  marginBottom: 36,
-                }}
+                style={[styles.primaryButton, { marginTop: 60 }]}
+                // style={{
+                //   backgroundColor: Themes.colors.salmon,
+                //   padding: 12,
+                //   borderRadius: 999,
+                //   width: windowWidth * 0.8,
+                //   alignItems: "center",
+                //   marginTop: 48,
+                //   marginBottom: 36,
+                // }}
                 onPress={() =>
                   setOnboardingScreenNumber(onboardingScreenNumber + 1)
                 }
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: 16,
-                  }}
-                >
-                  Let's roll
-                </Text>
+                <Text style={styles.onBoardingButtonText}>Let's roll</Text>
               </TouchableOpacity>
-            </>
+            </View>
           ) : (
             <>
-              {/* <View style={{alignItems: 'center'}}> */}
               {onboardingScreenNumber < 5 && (
                 <FlatList
                   data={ONBOARDING_SCREENS}
@@ -323,28 +300,13 @@ export default function Onboarding() {
                       <View
                         style={{
                           width: windowWidth * 0.8,
-                          height: 180,
                           flex: 1,
                           alignItems: "center",
+                          paddingTop: 10,
                         }}
                       >
-                        <Text
-                          style={{
-                            fontSize: 24,
-                            fontWeight: "600",
-                            marginTop: 36,
-                            width: windowWidth * 0.8,
-                          }}
-                        >
-                          {item.title}
-                        </Text>
-                        <Text
-                          style={{
-                            fontSize: 16,
-                            width: windowWidth * 0.8,
-                            marginTop: 16,
-                          }}
-                        >
+                        <Text style={styles.onboardingTitle}>{item.title}</Text>
+                        <Text style={styles.onboardingDescription}>
                           {item.description}
                         </Text>
                       </View>
@@ -356,8 +318,6 @@ export default function Onboarding() {
                   }}
                 />
               )}
-              {/* </View> */}
-
               {onboardingScreenNumber < 5 ? (
                 <>
                   <View
@@ -388,54 +348,25 @@ export default function Onboarding() {
                   </View>
                   {onboardingScreenNumber === 4 ? (
                     <TouchableOpacity
-                      style={{
-                        backgroundColor: Themes.colors.salmon,
-                        padding: 12,
-                        borderRadius: 999,
-                        width: windowWidth * 0.8,
-                        height: 45,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginTop: 24,
-                        marginBottom: 36,
-                      }}
+                      style={[
+                        styles.primaryButton,
+                        {marginTop: 24, marginBottom: 36 },
+                      ]}
                       onPress={() => {
-                        // if (onboardingScreenNumber === 4) {
-                          setOnboardingScreenNumber(5);
-                        // } else {
-                        //   const nextIndex = onboardingScreenNumber; // Already incremented in onScroll
-                        //   if (nextIndex < ONBOARDING_SCREENS.length) {
-                        //     flatListRef.current.scrollToIndex({
-                        //       index: nextIndex,
-                        //       animated: true,
-                        //     });
-                        //   }
-                        // }
+                        setOnboardingScreenNumber(5);
                       }}
                     >
-                      <Text
-                        style={{
-                          color: "white",
-                          fontWeight: "bold",
-                          fontSize: 16,
-                        }}
-                      >
-                        Continue
-                      </Text>
+                      <Text style={styles.onBoardingButtonText}>Continue</Text>
                     </TouchableOpacity>
                   ) : (
                     <View
-                      style={{
-                        padding: 12,
-                        borderRadius: 999,
-                        width: windowWidth * 0.8,
-                        height: 45,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginTop: 24,
-                        marginBottom: 36,
-                      }}
-                    />
+                      style={[
+                        styles.primaryButton,
+                        {backgroundColor: "white", marginTop: 24, marginBottom: 36 },
+                      ]}
+                    >
+                      <Text style={styles.onBoardingButtonText}>Continue</Text>
+                    </View>
                   )}
                 </>
               ) : (
@@ -480,11 +411,7 @@ export default function Onboarding() {
                     onPress={() => setCurrentScreen("log in")}
                   >
                     <Text
-                      style={{
-                        color: "black",
-                        fontWeight: "600",
-                        fontSize: 16,
-                      }}
+                      style={[styles.onBoardingButtonText, { color: "black" }]}
                     >
                       Log in
                     </Text>
@@ -493,15 +420,7 @@ export default function Onboarding() {
                     style={styles.primaryButton}
                     onPress={() => setCurrentScreen("sign up")}
                   >
-                    <Text
-                      style={{
-                        color: "white",
-                        fontWeight: "600",
-                        fontSize: 16,
-                      }}
-                    >
-                      Sign up
-                    </Text>
+                    <Text style={styles.onBoardingButtonText}>Sign up</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -689,6 +608,10 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
   },
+  firstScreenContainer: {
+    alignItems: "center",
+    marginTop: 30,
+  },
   title: {
     fontSize: 36,
     fontWeight: "bold",
@@ -724,7 +647,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: Themes.colors.salmon,
-    padding: 12,
+    padding: 10,
     borderRadius: 999,
     width: windowWidth * 0.8,
     alignItems: "center",
@@ -732,7 +655,7 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: Themes.colors.salmon,
-    padding: 12,
+    padding: 10,
     borderRadius: 999,
     width: windowWidth * 0.8,
     alignItems: "center",
@@ -740,8 +663,20 @@ const styles = StyleSheet.create({
   },
   onBoardingButtonText: {
     fontSize: 16,
-    fontFamily: "Poppins-Bold",
+    fontFamily: "Poppins-SemiBold",
     color: "white",
+  },
+  onboardingTitle: {
+    fontSize: 24,
+    fontFamily: "Poppins-SemiBold",
+    // marginTop: 36,
+    width: windowWidth * 0.8,
+  },
+  onboardingDescription: {
+    fontSize: 16,
+    fontFamily: "Poppins-Regular",
+    marginTop: 16,
+    width: windowWidth * 0.8,
   },
   backCaret: {
     alignSelf: "flex-start",
