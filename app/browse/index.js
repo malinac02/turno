@@ -5,35 +5,28 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from "react-native";
 import { Themes } from "../../assets/Themes";
 import { Link, Stack } from "expo-router";
 import Header from "../../components/Header";
-import { useFonts } from "expo-font";
 import { FontAwesome5 } from "@expo/vector-icons";
-import DiceImage from "../../assets/Themes/Images/DiceFaces/Dice-1.png";
 import DiceCard from "../../components/DiceCard";
 import { useState, useEffect, useContext } from "react";
-import Images from "../../assets/Themes/Images";
-import { useLocalSearchParams, router } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { DICE_DATA } from "../../assets/Themes/Dice";
 import { UserContext } from "../../contexts/UserContext";
 import { DiceContext } from "../../contexts/DiceContext";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+const windowWidth = Dimensions.get("window").width;
 
 export default function Page() {
   const params = useLocalSearchParams();
 
   const [filtersVisible, setFiltersVisible] = useState(false);
   const [activeFilter, setActiveFilter] = useState("");
-  // const [fontsLoaded] = useFonts({
-  //   "Poppins-Regular": require("../../assets/Poppins/Poppins-Regular.ttf"),
-  //   "Poppins-SemiBold": require("../../assets/Poppins/Poppins-SemiBold.ttf"),
-  //   "Poppins-Bold": require("../../assets/Poppins/Poppins-Bold.ttf"),
-  // });
-  // if (!fontsLoaded) {
-  //   return undefined;
-  // }
-
+  
   const { user } = useContext(UserContext);
   const { fetchCommunityDice } = useContext(DiceContext);
   const [dataList, setDataList] = useState([]);
@@ -60,7 +53,21 @@ export default function Page() {
       <View style={styles.container}>
         <Stack.Screen options={{ headerShown: false }} />
         <Header title="Community Dice" />
+        <View style={styles.instructionsContainer}>
+          <Text style={styles.instructionsText}>
+            Browse community dice to add to your dice collection.
+          
+          </Text>
+        </View>
         <View style={styles.searchBarContainer}>
+          <View style={styles.searchIconContainer}>
+            <Ionicons
+              name="search-sharp"
+              size={22}
+              color={Themes.colors.darkGray}
+            />
+          </View>
+        
           <TextInput style={styles.searchBar} placeholder="Search" />
           <TouchableOpacity onPress={() => setFiltersVisible(!filtersVisible)}>
             <FontAwesome5 name="sliders-h" size={24} color="#777" />
@@ -260,15 +267,38 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "90%",
-    marginTop: 30,
+    width: "95%",
+    paddingHorizontal: 2,
+  },
+  instructionsContainer: {
+    width: windowWidth - windowWidth * 0.1,
+    marginTop: 5,
+    marginBottom: 25,
+    alignItems: "left",
+    justifyContent: "center",
+  },
+  instructionsText: {
+    fontFamily: "Poppins-Regular",
+    fontSize: 14,
+  },
+  searchIconContainer: {
+    height: 40,
+    paddingLeft: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Themes.colors.lightGray,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   searchBar: {
-    width: "90%",
+    flex: 1,
     height: 40,
     backgroundColor: Themes.colors.lightGray,
-    borderRadius: 10,
-    padding: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    paddingLeft: 5,
+    paddingRight: 10,
+    marginRight: 10,
     fontFamily: "Poppins-Regular",
     fontSize: 16,
   },
