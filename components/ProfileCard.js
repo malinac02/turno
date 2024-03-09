@@ -40,7 +40,7 @@ export default function ProfileCard({
       {profilePic ? (
         <View style={styles.imageContainer}>
           <Image
-            source={imageDict["Pedro"]}
+            source={profilePic ? {uri: profilePic} : imageDict["Pedro"]}
             style={styles.profileImg}
           />
         </View>

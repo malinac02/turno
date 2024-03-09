@@ -16,6 +16,7 @@ import { Link } from "expo-router";
 import { useState, useContext } from "react";
 import { PostsContext } from "../contexts/PostsContext";
 import { Themes } from "../assets/Themes";
+import { Profile } from "./Profile";
 
 export default function Post({
   profilePost,
@@ -28,6 +29,7 @@ export default function Post({
   activityName,
   isYourPost,
   comments,
+  hardCode,
 }) {
   const [kudosColor, setKudosColor] = useState("black"); // Initial color
   const toggleKudos = () => {
@@ -71,7 +73,15 @@ export default function Post({
     <View style={styles.container}>
       <View style={styles.ImageText}>
         <View style={styles.imageContainer}>
-          <Image source={imageDict[profilePic]} style={styles.profileImg} />
+          {hardCode &&
+            <Image source={imageDict[profilePic]} style={styles.profileImg} />
+          }
+          {(!hardCode && profilePic) &&
+            <Image source={{ uri: profilePic }} style={styles.profileImg} />
+          }
+          {(!hardCode && !profilePic) &&
+            <Image source={imageDict.Pedro} style={styles.profileImg} />
+          }
         </View>
         <View style={styles.textContainer}>
           {isYourPost ? (

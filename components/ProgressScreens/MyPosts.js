@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Post from "../Post.js";
 import Images from "../../assets/Themes/Images";
 
-export default function MyPosts() {
+export default function MyPosts({ handle, profilePicUri }) {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -16,10 +16,11 @@ export default function MyPosts() {
         id={1}
         postIndex={1}
         profilePost={true}
-        handle={"pcivita"}
-        profilePic={"Pedro"}
+        handle={handle}
+        profilePic={profilePicUri}
+        hardCode={false}
         activityName={"Go on a run"}
-        comments={["first comment"]}
+        comments={["Can I join next time?"]}
       />
       <Post
         isYourPost={true}
@@ -27,10 +28,11 @@ export default function MyPosts() {
         id={2}
         postIndex={2}
         profilePost={true}
-        handle={"pcivita"}
-        profilePic={"Pedro"}
+        handle={handle}
+        profilePic={profilePicUri}
+        hardCode={false}
         activityName={"Eat at Zareens"}
-        comments={["first comment"]}
+        comments={["Ooh you gotta have the garlic naan"]}
       />
       <Post
         isYourPost={true}
@@ -38,10 +40,11 @@ export default function MyPosts() {
         id={3}
         postIndex={3}
         profilePost={true}
-        handle={"pcivita"}
-        profilePic={"Pedro"}
+        handle={handle}
+        profilePic={profilePicUri}
+        hardCode={false}
         activityName={"Dish hike"}
-        comments={["first comment"]}
+        comments={["Take me with you!"]}
       />
       <Post
         isYourPost={true}
@@ -49,10 +52,11 @@ export default function MyPosts() {
         id={4}
         postIndex={4}
         profilePost={true}
-        handle={"pcivita"}
-        profilePic={"Pedro"}
+        handle={handle}
+        profilePic={profilePicUri}
+        hardCode={false}
         activityName={"Read my book"}
-        comments={["first comment"]}
+        comments={["How was it?"]}
       />
     </ScrollView>
   );

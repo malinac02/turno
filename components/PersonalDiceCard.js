@@ -17,9 +17,8 @@ export default function PersonalDiceCard({
   community,
   isPopupVisible,
   togglePopup,
-  toggleDeleteModal
+  toggleDeleteModal,
 }) {
-
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
@@ -41,10 +40,14 @@ export default function PersonalDiceCard({
           }}
         >
           <View style={styles.content}>
-              <Image 
-                source={imageUri ? { uri: imageUri } : require("../assets/Themes/Images/onboarding/diceZigZag.png")} 
-                style={styles.image} 
-              />
+            <Image
+              source={
+                imageUri
+                  ? { uri: imageUri }
+                  : require("../assets/Themes/Images/onboarding/diceZigZag.png")
+              }
+              style={styles.image}
+            />
             <View style={styles.textCol}>
               <View style={styles.titleAndSubtitle}>
                 <Text style={styles.titleText} numberOfLines={2}>
@@ -84,10 +87,7 @@ export default function PersonalDiceCard({
         </Link>
       </View>
       <View style={styles.rightContainer}>
-        <TouchableOpacity
-          style={styles.menuDots}
-          onPress={togglePopup}
-        >
+        <TouchableOpacity style={styles.menuDots} onPress={togglePopup}>
           <FontAwesome5 name="ellipsis-h" size={12} color="black" />
         </TouchableOpacity>
       </View>
@@ -102,15 +102,15 @@ export default function PersonalDiceCard({
                   description: description,
                   choices: JSON.stringify(item.choices),
                   categoryID: item.categoryID,
-                  switchEnabled: community, 
+                  switchEnabled: community,
                   imageUri: imageUri,
                 },
               }}
             >
-            <TouchableOpacity style={styles.popupMenuItem}>
-              <FontAwesome5 name="pencil-alt" size={16} color="black" />
-              <Text style={styles.popupText}>Edit</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.popupMenuItem}>
+                <FontAwesome5 name="pencil-alt" size={16} color="black" />
+                <Text style={styles.popupText}>Edit</Text>
+              </TouchableOpacity>
             </Link>
             <TouchableOpacity
               onPress={togglePopup}

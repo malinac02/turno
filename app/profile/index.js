@@ -39,7 +39,6 @@ export default function Page() {
           console.error('Failed to fetch user data:', error);
         }
       };
-
       fetchUserData();
     }
   }, [user]);
@@ -80,7 +79,7 @@ export default function Page() {
           </View>
 
           <View style={styles.subscreenContainer}>
-            {activeScreen === "Posts" && <MyPosts />}
+            {activeScreen === "Posts" && <MyPosts handle={"@" + username} profilePicUri={profilePicUri} />}
             {activeScreen === "Stats" && <Stats />}
           </View>
         </View>

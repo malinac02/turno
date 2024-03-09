@@ -281,10 +281,7 @@ export default function Page() {
           <Link
             disabled={!isFormFilled}
             href={{
-              pathname: "/activities/home",
-              params: {
-                name: "Alan",
-              },
+              pathname: "/roll",
             }}
             onPress={handleCreateDice}
           >

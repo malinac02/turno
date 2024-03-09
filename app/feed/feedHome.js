@@ -91,6 +91,7 @@ export default function Page() {
                     postIndex={index}
                     handle={post.user_handle}
                     profilePic={post.user_profile_pic}
+                    hardCode={true}
                     activityName={post.post_text}
                     comments={post.comments}
                   />
