@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
     backgroundColor: Themes.colors.background,
   },
   instructionsContainer: {
-
     width: windowWidth - windowWidth * 0.1,
     marginTop: 5,
     marginBottom: 25,

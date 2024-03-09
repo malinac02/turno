@@ -323,7 +323,10 @@ export default function Onboarding() {
                       <View
                         style={{
                           width: windowWidth * 0.8,
+                          height: 180,
+                          flex: 1,
                           alignItems: "center",
+                          backgroundColor: "green"
                         }}
                       >
                         <Text
@@ -363,6 +366,7 @@ export default function Onboarding() {
                       flexDirection: "row",
                       justifyContent: "center",
                       alignItems: "center",
+                      backgroundColor: "blue",
                       marginTop: 48,
                     }}
                   >
@@ -391,22 +395,24 @@ export default function Onboarding() {
                         padding: 12,
                         borderRadius: 999,
                         width: windowWidth * 0.8,
+                        height: 45,
                         alignItems: "center",
+                        justifyContent: "center",
                         marginTop: 24,
                         marginBottom: 36,
                       }}
                       onPress={() => {
-                        if (onboardingScreenNumber === 4) {
+                        // if (onboardingScreenNumber === 4) {
                           setOnboardingScreenNumber(5);
-                        } else {
-                          const nextIndex = onboardingScreenNumber; // Already incremented in onScroll
-                          if (nextIndex < ONBOARDING_SCREENS.length) {
-                            flatListRef.current.scrollToIndex({
-                              index: nextIndex,
-                              animated: true,
-                            });
-                          }
-                        }
+                        // } else {
+                        //   const nextIndex = onboardingScreenNumber; // Already incremented in onScroll
+                        //   if (nextIndex < ONBOARDING_SCREENS.length) {
+                        //     flatListRef.current.scrollToIndex({
+                        //       index: nextIndex,
+                        //       animated: true,
+                        //     });
+                        //   }
+                        // }
                       }}
                     >
                       <Text
@@ -425,7 +431,9 @@ export default function Onboarding() {
                         padding: 12,
                         borderRadius: 999,
                         width: windowWidth * 0.8,
+                        height: 45,
                         alignItems: "center",
+                        justifyContent: "center",
                         marginTop: 24,
                         marginBottom: 36,
                       }}
