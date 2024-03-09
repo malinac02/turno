@@ -446,7 +446,7 @@ export default function Onboarding() {
           style={styles.logo}
         />
         <Text style={styles.title}>turno</Text>
-        <Text style={styles.subtitle}>
+        <Text style={[styles.subtitle, {width: 220, fontSize: 20, marginTop: 6, marginBottom: 30}]}>
           Get rolling on making hard decisions
         </Text>
         <TextInput
@@ -471,6 +471,12 @@ export default function Onboarding() {
         <TouchableOpacity onPress={handleLogIn} style={styles.secondaryButton}>
           <Text style={styles.loginText}>Log In</Text>
         </TouchableOpacity>
+        <Text
+          style={styles.submessageText}
+          onPress={() => setCurrentScreen("sign up")}
+        >
+          Don't have an account?<Text style={styles.blueText}> Sign Up</Text>
+        </Text>
         {/* </Link> */}
       </View>
     );
@@ -511,6 +517,9 @@ export default function Onboarding() {
           style={styles.logo}
         />
         <Text style={styles.title}>turno</Text>
+        <Text style={[styles.subtitle, {width: 220, fontSize: 20, marginTop: 6, marginBottom: 30}]}>
+          Get rolling on making hard decisions
+        </Text>
         <TouchableOpacity
           style={styles.profileUploader}
           onPress={() => selectPhoto()}
@@ -565,7 +574,7 @@ export default function Onboarding() {
           style={styles.submessageText}
           onPress={() => setCurrentScreen("log in")}
         >
-          Already have an account? <Text style={styles.blueText}>Log In</Text>
+          Already have an account?<Text style={styles.blueText}> Log In</Text>
         </Text>
       </View>
     );
@@ -605,8 +614,8 @@ const styles = StyleSheet.create({
   //   backgroundColor: Themes.colors.blue,
   // },
   logo: {
-    width: 75,
-    height: 75,
+    width: 50,
+    height: 50,
   },
   firstScreenContainer: {
     alignItems: "center",
@@ -620,7 +629,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 24,
-    marginTop: 16,
+    marginTop: 14,
     fontFamily: "Poppins-Regular",
     width: windowWidth * 0.7,
     textAlign: "center",
@@ -628,9 +637,9 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     borderBottomWidth: 1,
-    borderColor: "gray",
+    borderColor: Themes.colors.blueLight,
     padding: 10,
-    marginVertical: 8,
+    marginVertical: 5,
     color: "#000",
     fontFamily: "Poppins-Regular",
   },
@@ -642,7 +651,7 @@ const styles = StyleSheet.create({
   submessageText: {
     fontSize: 16,
     fontFamily: "Poppins-Regular",
-    color: "black",
+    color: Themes.colors.darkGray,
     marginTop: 12,
   },
   primaryButton: {
