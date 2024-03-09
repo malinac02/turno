@@ -38,41 +38,42 @@ export default function Onboarding() {
   const [onboardingScreenNumber, setOnboardingScreenNumber] = useState(0);
   const flatListRef = useRef(null);
 
-
   const ONBOARDING_HEADERS = [
     "Create your custom dice",
     "Roll your dice to make decision-making fun",
     "Explore community dice to find new things to do.",
-    "Celebrate all the choices being made"
-
-  ]
+    "Celebrate all the choices being made",
+  ];
 
   const ONBOARDING_DESCRIPTIONS = [
     "Whether it’s deciding what to eat, which run to go on, or how to unwind, customize the dice with tailored choices to fit your life.",
     "No more endless pondering or decision fatigue throughout the day.",
     "Discover a wide range of activities in your area and see what’s popular around you.",
-    "Engage with your friends on Turno to learn about their lives."
-
-  ]
+    "Engage with your friends on Turno to learn about their lives.",
+  ];
 
   const ONBOARDING_SCREENS = [
     {
       title: "Create your custom dice",
-      description: "Whether it’s deciding what to eat, which run to go on, or how to unwind, customize the dice with tailored choices to fit your life.",
+      description:
+        "Whether it’s deciding what to eat, which run to go on, or how to unwind, customize the dice with tailored choices to fit your life.",
     },
     {
       title: "Roll your dice to make decision-making fun",
-      description: "No more endless pondering or decision fatigue throughout the day.",
+      description:
+        "No more endless pondering or decision fatigue throughout the day.",
     },
     {
       title: "Explore community dice to find new things to do.",
-      description: "Discover a wide range of activities in your area and see what’s popular around you.",
+      description:
+        "Discover a wide range of activities in your area and see what’s popular around you.",
     },
     {
       title: "Celebrate all the choices being made",
-      description: "Engage with your friends on Turno to learn about their lives.",
+      description:
+        "Engage with your friends on Turno to learn about their lives.",
     },
-  ]
+  ];
 
   // const ONBOARDING_SCREENS = [
   //   {header: "Create your custom dice", description: "Whether it’s deciding what to eat, which run to go on, or how to unwind, customize the dice with tailored choices to fit your life."},
@@ -81,8 +82,8 @@ export default function Onboarding() {
   //   {header: "Celebrate all the choices being made", description: "Engage with your friends on Turno to learn about their lives."}
   // ]
 
-  const DOTS = [1, 2, 3, 4]
-  
+  const DOTS = [1, 2, 3, 4];
+
   const renderOnboardingImage = () => {
     switch (onboardingScreenNumber) {
       case 0:
@@ -91,65 +92,64 @@ export default function Onboarding() {
             source={require("../assets/Themes/Images/onboarding/diceZigZag.png")}
             style={{
               width: windowWidth,
-             resizeMode: 'contain',
+              resizeMode: "contain",
             }}
           />
         );
-        case 1:
-          return (
-            <Image
+      case 1:
+        return (
+          <Image
             source={require("../assets/Themes/Images/onboarding/campusLunchSpots.png")}
             style={{
               width: windowWidth,
-              resizeMode: 'contain',
+              resizeMode: "contain",
             }}
-            />
-            );
-        case 2:
-          return (
-            <Image
-              source={require("../assets/Themes/Images/onboarding/diceShake.png")}
-              style={{
-                width: windowWidth * 0.8,  
-                resizeMode: 'contain',   
-                
-              }}
-            />
-          );
-        case 3:
-          return (
-            <Image
-              source={require("../assets/Themes/Images/onboarding/browsePreview.png")}
-              style={{
-                width: windowWidth * 0.8,
-                resizeMode: 'contain',  
-              }}
-            />
-          );
-        case 4:
-          return (
-            <Image
-              source={require("../assets/Themes/Images/onboarding/feedPreview.png")}
-              style={{
-                width: windowWidth * 0.8,
-                resizeMode: 'contain',    
-              }}
-            />
-          );
+          />
+        );
+      case 2:
+        return (
+          <Image
+            source={require("../assets/Themes/Images/onboarding/diceShake.png")}
+            style={{
+              width: windowWidth * 0.8,
+              resizeMode: "contain",
+            }}
+          />
+        );
+      case 3:
+        return (
+          <Image
+            source={require("../assets/Themes/Images/onboarding/browsePreview.png")}
+            style={{
+              width: windowWidth * 0.8,
+              resizeMode: "contain",
+            }}
+          />
+        );
+      case 4:
+        return (
+          <Image
+            source={require("../assets/Themes/Images/onboarding/feedPreview.png")}
+            style={{
+              width: windowWidth * 0.8,
+              resizeMode: "contain",
+            }}
+          />
+        );
       default:
         return (
           <Image
             source={require("../assets/Themes/Images/onboarding/diceZigZag.png")}
             style={{
               width: windowWidth,
-             resizeMode: 'contain',     
+              resizeMode: "contain",
             }}
           />
         );
     }
-  }
+  };
 
-  const { user, logIn, logoutUser, signUp, initializeUserDatabaseEntry,} =
+  const { user, logIn, logoutUser, signUp, initializeUserDatabaseEntry } =
     useContext(UserContext);
   useEffect(() => {
     if (user) {
@@ -234,218 +234,273 @@ export default function Onboarding() {
   };
 
   const renderOnboarding = () => {
-    
     return (
       <View style={styles.container}>
         <View style={styles.onboardingSpacing} />
 
-       
-        {onboardingScreenNumber !== 0 && 
-        <Text style={{
-          fontSize: 36,
-          fontWeight: 'bold',
-          fontFamily: 'Poppins-Bold',
-          color: 'white',
-          marginBottom: 24,
-        }}
-        >
-          turno
-        </Text>
-       }
+        {onboardingScreenNumber !== 0 && (
+          <Text
+            style={{
+              fontSize: 36,
+              fontWeight: "bold",
+              fontFamily: "Poppins-Bold",
+              color: "white",
+              marginBottom: 24,
+            }}
+          >
+            turno
+          </Text>
+        )}
         {renderOnboardingImage()}
 
-        <View style={{
-          position: 'absolute', 
-          bottom: 0, 
-          backgroundColor: '#fff',
-          alignItems: 'center',
-          width: windowWidth,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          height: windowHeight * 0.45,
-        }}>
-          {onboardingScreenNumber === 0 ? <>
-            <Text style={styles.title}>turno</Text>
-          <Text style={styles.subtitle}>Get rolling on making hard decisions</Text>
-          <TouchableOpacity style={{
-            backgroundColor: Themes.colors.salmon,
-            padding: 12,
-            borderRadius: 999,
-            width: windowWidth * 0.8,
-            alignItems: 'center',
-            marginTop: 48,
-            marginBottom: 36
-
+        <View
+          style={{
+            position: "absolute",
+            bottom: 0,
+            backgroundColor: "#fff",
+            alignItems: "center",
+            width: windowWidth,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            height: windowHeight * 0.45,
           }}
-          onPress={() => setOnboardingScreenNumber(onboardingScreenNumber + 1)}
-          >
-            <Text style={{
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}>Let's roll</Text>
-          </TouchableOpacity>
-          </>
-          :
+        >
+          {onboardingScreenNumber === 0 ? (
             <>
-        {/* <View style={{alignItems: 'center'}}> */}
-        {onboardingScreenNumber < 5 &&
-          <FlatList
-            data={ONBOARDING_SCREENS}
-            keyExtractor={(item, index) => index.toString()}
-            horizontal
-            // snapToAlignment="center"
-            decelerationRate="fast"
-            showsHorizontalScrollIndicator={false}
-            ref={flatListRef}
-            pagingEnabled
-            snapToInterval={windowWidth * 0.8}
-            scrollEventThrottle={16}
-            onScroll={event => {
-              const contentOffsetX = event.nativeEvent.contentOffset.x;
-              const currentIndex = Math.round(contentOffsetX / (windowWidth * 0.8));
-              setOnboardingScreenNumber(currentIndex + 1);
-            }}
-            renderItem={({ item }) => {
-              return (
-                <View style={{
-                  width: windowWidth * 0.8,
-                  alignItems: 'center',
-                }}>
-                  <Text style={{
-                    fontSize: 24,
-                    fontWeight: '600',
-                    marginTop: 36,
-                    width: windowWidth * 0.8,
-                  }}>{item.title}</Text>
-                  <Text style={{
-                    fontSize: 16,
-                    width: windowWidth * 0.8,
-                    marginTop: 16,
-                  }}>{item.description}</Text>
-                </View>
-              )
-            }}
-            style={{
-              width: windowWidth * 0.8,
-              marginTop: 48,
-            }}
-          />
-          }
-           {/* </View> */}
-           
-           {onboardingScreenNumber < 5 ?
-           <>
-          <View style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 48,
-            }}>
-              {DOTS.map((dot, index) => {
-                return (
-                  <View
-                    key={index}
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: 4,
-                      backgroundColor: index + 1 === onboardingScreenNumber ? Themes.colors.blue : 'lightgrey',
-                      marginHorizontal: 4,
-                    }}
-                  />
-                )
-              })}
-            </View>
-            {onboardingScreenNumber === 4 ?
-              <TouchableOpacity style={{
-                backgroundColor: Themes.colors.salmon,
-                padding: 12,
-                borderRadius: 999,
-                width: windowWidth * 0.8,
-                alignItems: 'center',
-                marginTop: 24,
-                marginBottom: 36
-              }}
-              onPress={() => {
-                if (onboardingScreenNumber === 4) {
-                  setOnboardingScreenNumber(5)
-                } else {
-                  const nextIndex = onboardingScreenNumber; // Already incremented in onScroll
-                  if (nextIndex < ONBOARDING_SCREENS.length) {
-                    flatListRef.current.scrollToIndex({index: nextIndex, animated: true});
-                  }
-                }
-              }}
-              >
-                <Text style={{
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: 16,
-                }}>Continue</Text>
-              </TouchableOpacity>
-            :
-              <View style={{
-                padding: 12,
-                borderRadius: 999,
-                width: windowWidth * 0.8,
-                alignItems: 'center',
-                marginTop: 24,
-                marginBottom: 36
-                }} />
-            }
-            </>
-            :
-            <View style={{
-              alignItems: 'center',
-            }}>
-              <Text style={{
-                fontSize: 30,
-                fontWeight: 'bold',
-                fontFamily: 'Poppins-Bold',
-                color: 'black', 
-                textAlign: 'center',
-                marginTop: 36,
-              }}>turno</Text>
-              <Text style={{
-                fontSize: 24,
-                fontFamily: 'Poppins-Regular',
-                color: 'black',
-                marginTop: 24,
-                textAlign: 'center',
-              }}>
+              <Text style={styles.title}>turno</Text>
+              <Text style={styles.subtitle}>
                 Get rolling on making hard decisions
               </Text>
-              <TouchableOpacity style={{
-                borderColor: Themes.colors.salmon,
-                padding: 12,
-                borderRadius: 999,
-                width: windowWidth * 0.8,
-                alignItems: 'center',
-                marginTop: 48,
-                borderWidth: 1,
-              }}
-              onPress={() => setCurrentScreen('log in')}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: Themes.colors.salmon,
+                  padding: 12,
+                  borderRadius: 999,
+                  width: windowWidth * 0.8,
+                  alignItems: "center",
+                  marginTop: 48,
+                  marginBottom: 36,
+                }}
+                onPress={() =>
+                  setOnboardingScreenNumber(onboardingScreenNumber + 1)
+                }
               >
-                <Text style={{
-                  color: 'black',
-                  fontWeight: '600',
-                  fontSize: 16,
-                }}>Log in</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: 16,
+                  }}
+                >
+                  Let's roll
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.primaryButton}
-                onPress={() => setCurrentScreen('sign up')}
-              >
-                <Text style={{
-                  color: 'white',
-                  fontWeight: '600',
-                  fontSize: 16,
-                }}>Sign up</Text>
-              </TouchableOpacity>
-            </View>
-          }
-          </>
-          }
+            </>
+          ) : (
+            <>
+              {/* <View style={{alignItems: 'center'}}> */}
+              {onboardingScreenNumber < 5 && (
+                <FlatList
+                  data={ONBOARDING_SCREENS}
+                  keyExtractor={(item, index) => index.toString()}
+                  horizontal
+                  // snapToAlignment="center"
+                  decelerationRate="fast"
+                  showsHorizontalScrollIndicator={false}
+                  ref={flatListRef}
+                  pagingEnabled
+                  snapToInterval={windowWidth * 0.8}
+                  scrollEventThrottle={16}
+                  onScroll={(event) => {
+                    const contentOffsetX = event.nativeEvent.contentOffset.x;
+                    const currentIndex = Math.round(
+                      contentOffsetX / (windowWidth * 0.8)
+                    );
+                    setOnboardingScreenNumber(currentIndex + 1);
+                  }}
+                  renderItem={({ item }) => {
+                    return (
+                      <View
+                        style={{
+                          width: windowWidth * 0.8,
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 24,
+                            fontWeight: "600",
+                            marginTop: 36,
+                            width: windowWidth * 0.8,
+                          }}
+                        >
+                          {item.title}
+                        </Text>
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            width: windowWidth * 0.8,
+                            marginTop: 16,
+                          }}
+                        >
+                          {item.description}
+                        </Text>
+                      </View>
+                    );
+                  }}
+                  style={{
+                    width: windowWidth * 0.8,
+                    marginTop: 48,
+                  }}
+                />
+              )}
+              {/* </View> */}
+
+              {onboardingScreenNumber < 5 ? (
+                <>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginTop: 48,
+                    }}
+                  >
+                    {DOTS.map((dot, index) => {
+                      return (
+                        <View
+                          key={index}
+                          style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: 4,
+                            backgroundColor:
+                              index + 1 === onboardingScreenNumber
+                                ? Themes.colors.blue
+                                : "lightgrey",
+                            marginHorizontal: 4,
+                          }}
+                        />
+                      );
+                    })}
+                  </View>
+                  {onboardingScreenNumber === 4 ? (
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: Themes.colors.salmon,
+                        padding: 12,
+                        borderRadius: 999,
+                        width: windowWidth * 0.8,
+                        alignItems: "center",
+                        marginTop: 24,
+                        marginBottom: 36,
+                      }}
+                      onPress={() => {
+                        if (onboardingScreenNumber === 4) {
+                          setOnboardingScreenNumber(5);
+                        } else {
+                          const nextIndex = onboardingScreenNumber; // Already incremented in onScroll
+                          if (nextIndex < ONBOARDING_SCREENS.length) {
+                            flatListRef.current.scrollToIndex({
+                              index: nextIndex,
+                              animated: true,
+                            });
+                          }
+                        }
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: "white",
+                          fontWeight: "bold",
+                          fontSize: 16,
+                        }}
+                      >
+                        Continue
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <View
+                      style={{
+                        padding: 12,
+                        borderRadius: 999,
+                        width: windowWidth * 0.8,
+                        alignItems: "center",
+                        marginTop: 24,
+                        marginBottom: 36,
+                      }}
+                    />
+                  )}
+                </>
+              ) : (
+                <View
+                  style={{
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 30,
+                      fontWeight: "bold",
+                      fontFamily: "Poppins-Bold",
+                      color: "black",
+                      textAlign: "center",
+                      marginTop: 36,
+                    }}
+                  >
+                    turno
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 24,
+                      fontFamily: "Poppins-Regular",
+                      color: "black",
+                      marginTop: 24,
+                      textAlign: "center",
+                    }}
+                  >
+                    Get rolling on making hard decisions
+                  </Text>
+                  <TouchableOpacity
+                    style={{
+                      borderColor: Themes.colors.salmon,
+                      padding: 12,
+                      borderRadius: 999,
+                      width: windowWidth * 0.8,
+                      alignItems: "center",
+                      marginTop: 48,
+                      borderWidth: 1,
+                    }}
+                    onPress={() => setCurrentScreen("log in")}
+                  >
+                    <Text
+                      style={{
+                        color: "black",
+                        fontWeight: "600",
+                        fontSize: 16,
+                      }}
+                    >
+                      Log in
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.primaryButton}
+                    onPress={() => setCurrentScreen("sign up")}
+                  >
+                    <Text
+                      style={{
+                        color: "white",
+                        fontWeight: "600",
+                        fontSize: 16,
+                      }}
+                    >
+                      Sign up
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </>
+          )}
         </View>
       </View>
     );
@@ -466,8 +521,15 @@ export default function Onboarding() {
           style={styles.logo}
         />
         <Text style={styles.title}>turno</Text>
-        <Text style={styles.subtitle}>Get rolling on making hard decisions</Text>
-        <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => setEmail(text.toLowerCase())} value={email}/>
+        <Text style={styles.subtitle}>
+          Get rolling on making hard decisions
+        </Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text.toLowerCase())}
+          value={email}
+        />
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -574,7 +636,10 @@ export default function Onboarding() {
           <Text style={styles.loginText}>Create Account</Text>
         </TouchableOpacity>
         {/* </Link> */}
-        <Text style={styles.submessageText} onPress={() => setCurrentScreen('log in')}>
+        <Text
+          style={styles.submessageText}
+          onPress={() => setCurrentScreen("log in")}
+        >
           Already have an account? <Text style={styles.blueText}>Log In</Text>
         </Text>
       </View>
@@ -615,14 +680,14 @@ const styles = StyleSheet.create({
   //   backgroundColor: Themes.colors.blue,
   // },
   logo: {
-    width:  75,
+    width: 75,
     height: 75,
   },
   title: {
     fontSize: 36,
     fontWeight: "bold",
     fontFamily: "Poppins-Bold",
-    marginTop: 16
+    marginTop: 16,
   },
   subtitle: {
     fontSize: 24,
@@ -641,22 +706,22 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Regular",
   },
   loginText: {
-      fontSize: 16,
-      fontFamily: 'Poppins-Bold',
-      color: 'white',
+    fontSize: 16,
+    fontFamily: "Poppins-Bold",
+    color: "white",
   },
   submessageText: {
-      fontSize: 16,
-      fontFamily: 'Poppins-Regular',
-      color: 'black',
-      marginTop: 12,
+    fontSize: 16,
+    fontFamily: "Poppins-Regular",
+    color: "black",
+    marginTop: 12,
   },
   primaryButton: {
     backgroundColor: Themes.colors.salmon,
     padding: 12,
     borderRadius: 999,
     width: windowWidth * 0.8,
-    alignItems: 'center', 
+    alignItems: "center",
     marginTop: 12,
   },
   secondaryButton: {
@@ -664,7 +729,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 999,
     width: windowWidth * 0.8,
-    alignItems: 'center', 
+    alignItems: "center",
     marginTop: 12,
   },
   onBoardingButtonText: {
@@ -689,6 +754,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   blueText: {
-    color: Themes.colors.blue
-  }
+    color: Themes.colors.blue,
+  },
 });

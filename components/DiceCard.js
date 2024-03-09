@@ -4,6 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Themes } from "../assets/Themes";
+import { Profile } from "./Profile"
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -52,12 +53,7 @@ export default function DiceCard({ img, title, creator, numSaved, numRolled }) {
             style={styles.profilePic}
           />
         ) : (
-          <FontAwesome5
-            name="user-circle"
-            size={25}
-            color="black"
-            style={styles.profilePic}
-          />
+          <Profile width={23} height={23}  />
         )}
         <Text style={{ fontSize: 12 }}>By @{creatorUsername}</Text>
       </View>
@@ -122,8 +118,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   profilePic: {
-    width: 25,
-    height: 25,
+    width: 23,
+    height: 23,
     borderRadius: 999,
   },
   statsText: {
