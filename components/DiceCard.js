@@ -40,7 +40,7 @@ export default function DiceCard({ img, title, creator, numSaved, numRolled }) {
           <Image source={{ uri: img }} style={styles.image} />
         ) : (
           <Image
-            source={require("../assets/Themes/Images/onboarding/diceZigZag.png")}
+            source={require("../assets/Themes/Images/onboarding/diceZigZag2.png")}
             style={styles.diceImage}
           />
         )}

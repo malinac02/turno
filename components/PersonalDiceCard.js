@@ -44,7 +44,7 @@ export default function PersonalDiceCard({
               source={
                 imageUri
                   ? { uri: imageUri }
-                  : require("../assets/Themes/Images/onboarding/diceZigZag.png")
+                  : require("../assets/Themes/Images/onboarding/diceZigZag2.png")
               }
               style={styles.image}
             />
