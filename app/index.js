@@ -326,7 +326,6 @@ export default function Onboarding() {
                           height: 180,
                           flex: 1,
                           alignItems: "center",
-                          backgroundColor: "green"
                         }}
                       >
                         <Text
@@ -366,7 +365,6 @@ export default function Onboarding() {
                       flexDirection: "row",
                       justifyContent: "center",
                       alignItems: "center",
-                      backgroundColor: "blue",
                       marginTop: 48,
                     }}
                   >
