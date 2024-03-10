@@ -21,7 +21,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 export default function CommunityDiceDetails() {
   const params = useLocalSearchParams();
-  const { fetchUserFromUid, user } = useContext(UserContext);
+  const { fetchUserFromUid, addDiceToUser, user } = useContext(UserContext);
 
   const [currentDice, setCurrentDice] = useState(null);
   const [activities, setActivities] = useState([]);
@@ -48,6 +48,7 @@ export default function CommunityDiceDetails() {
     }
   };
   const handleAdd = () => {
+    addDiceToUser(user.uid, params.diceId)
     router.replace("/roll");
   };
 

@@ -219,7 +219,7 @@ export default function Page() {
                     activities: item.choices,
                     title: item.name,
                     img: item.imageUri,
-                    id: item.diceId,
+                    diceId: item.diceId,
                     creator: item.creator,
                     pageTitle: "Community Dice Details"
                     // profilePic: item.user.profilePic,
